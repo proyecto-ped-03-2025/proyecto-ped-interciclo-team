@@ -116,6 +116,12 @@ int ListaCircular::obtenerTamano()
     return contador;
 }
 
+// Obtener la cabeza de la lista circular.
+Nodo *ListaCircular::obtenerCabeza()
+{
+    return cabeza; // Devuelve un puntero al nodo cabeza de la lista circular.
+}
+
 int main()
 {
 
