@@ -1,5 +1,14 @@
 #include <iostream>
 using namespace std;
+// Estructura de nodo:
+struct Nodo
+{
+    string nombre;
+    float puntaje;
+    char id;
+    Nodo *siguiente;
+};
+
 
 
 class ListaCircular{
@@ -18,6 +27,8 @@ class ListaCircular{
     Nodo*obtenerGanador();
 };
 int main(){
+
+
 
 
 
