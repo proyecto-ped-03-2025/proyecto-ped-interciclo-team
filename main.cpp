@@ -42,7 +42,7 @@ public:
     Nodo *obtenerGanador();
 };
 
-
+//Se implementa para poder Insertar
 void ListaCircular::insertar(string nombre, char id){
     Nodo* nuevo = new Nodo(nombre, id);
 
@@ -62,6 +62,29 @@ void ListaCircular::insertar(string nombre, char id){
 
 }
 
+//Verficar si se inscribieron bien(mostrar)
+void ListaCircular::mostrar(){
+    if (estaVacia()){
+        cout << "No hay jugadores inscritos"<<endl;
+        return;
+    }
+
+    Nodo* temp = cabeza;
+
+    do{
+        cout<< "Nombre: "<< temp->nombre
+        <<" | ID:"<< temp-> id
+        << " | Puntos: "<< temp-> puntaje << endl;
+
+        temp = temp -> siguiente;
+
+
+
+    } while (temp!=cabeza);
+
+
+
+}
 
 
 
