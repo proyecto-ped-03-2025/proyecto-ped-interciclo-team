@@ -1,9 +1,6 @@
 #include <iostream>
 
-
-
 #include <string>
-
 
 using namespace std;
 
@@ -15,12 +12,12 @@ struct Nodo
     char id;
     Nodo *siguiente;
 
-    Nodo(string nombre, char id){
+    Nodo(string nombre, char id)
+    {
         this->nombre = nombre;
-        this->id= id;
+        this->id = id;
         puntaje = 0;
         siguiente = nullptr;
-
     }
 };
 
@@ -42,60 +39,81 @@ public:
     Nodo *obtenerGanador();
 };
 
-//Se implementa para poder Insertar
-void ListaCircular::insertar(string nombre, char id){
-    Nodo* nuevo = new Nodo(nombre, id);
+// Se implementa para poder Insertar
+void ListaCircular::insertar(string nombre, char id)
+{
+    Nodo *nuevo = new Nodo(nombre, id);
 
-    if (estaVacia()){
+    if (estaVacia())
+    {
         cabeza = nuevo;
-        nuevo -> siguiente = cabeza;
-    } else {
-        Nodo* temp= cabeza;
-        while(temp->siguiente!=cabeza){
-            temp = temp-> siguiente;
+        nuevo->siguiente = cabeza;
+    }
+    else
+    {
+        Nodo *temp = cabeza;
+        while (temp->siguiente != cabeza)
+        {
+            temp = temp->siguiente;
         }
 
-        temp -> siguiente =nuevo;
-        nuevo -> siguiente = cabeza;
+        temp->siguiente = nuevo;
+        nuevo->siguiente = cabeza;
     }
-
-
 }
 
-//Verficar si se inscribieron bien(mostrar)
-void ListaCircular::mostrar(){
-    if (estaVacia()){
-        cout << "No hay jugadores inscritos"<<endl;
+// Verficar si se inscribieron bien(mostrar)
+void ListaCircular::mostrar()
+{
+    if (estaVacia())
+    {
+        cout << "No hay jugadores inscritos" << endl;
         return;
     }
 
-    Nodo* temp = cabeza;
+    Nodo *temp = cabeza;
 
-    do{
-        cout<< "Nombre: "<< temp->nombre
-        <<" | ID:"<< temp-> id
-        << " | Puntos: "<< temp-> puntaje << endl;
+    do
+    {
+        cout << "Nombre: " << temp->nombre
+             << " | ID:" << temp->id
+             << " | Puntos: " << temp->puntaje << endl;
 
-        temp = temp -> siguiente;
+        temp = temp->siguiente;
 
-
-
-    } while (temp!=cabeza);
-
-
-
+    } while (temp != cabeza);
 }
-
-
-
 
 /*
 Lo implementamos para verificar si la lista circular esta vacía.
 */
 
-bool ListaCircular::estaVacia() {
+bool ListaCircular::estaVacia()
+{
     // La lista está vacía si la cabeza es nullptr
     return cabeza == nullptr;
+}
+
+// Obtener el tamaño de la lista circular.
+int ListaCircular::obtenerTamano()
+{
+    if (estaVacia())
+    {
+        return 0;
+    }
+
+    int contador = 0;
+
+    Nodo *temp = cabeza; // Creamos un nodo temporal.
+
+    // Recorremos la lista circular.
+    do
+    {
+        contador++; // Incrementamos el contador por cada nodo que encontramos.
+        temp = temp->siguiente;
+    } while (temp != cabeza);
+
+    return contador;
 }
 
 int main()
