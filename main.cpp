@@ -220,6 +220,40 @@ void Juego::verListadoParticipantes()
     lista.mostrar(); // Llamamos al método mostrar de la clase ListaCircular para mostrar los participantes inscritos.
 }
 
+void Juego::jugarCompetencia() {
+
+    int cantidad = lista.obtenerTamano();
+
+    if (!validarCantidadParticipantes(cantidad)) {
+        cout << "\nSe necesitan al menos 2 participantes.\n";
+        return;
+    }
+
+    lista.reiniciarPuntajes();
+
+    Nodo* actual = lista.obtenerCabeza();
+
+    cout << "\n=== INICIANDO COMPETENCIA ===\n";
+
+    do {
+
+        Nodo* rival = actual->siguiente;
+
+        while (rival != lista.obtenerCabeza()) {
+
+            jugarRonda(actual, rival);
+
+            rival = rival->siguiente;
+        }
+
+        actual = actual->siguiente;
+
+    } while (actual != lista.obtenerCabeza());
+
+    cout << "\nCompetencia finalizada.\n";
+}
+
+
 int main()
 {
 
