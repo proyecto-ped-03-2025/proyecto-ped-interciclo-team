@@ -213,6 +213,13 @@ void Juego::inscribir()
     cout << "¡" << nombre << " inscrito correctamente!" << endl;
 }
 
+//Para poder mostrar el listado de participantes inscritos en el juego.
+void Juego::verListadoParticipantes()
+{
+    cout << "=== LISTADO DE PARTICIPANTES ===" << endl;
+    lista.mostrar(); // Llamamos al método mostrar de la clase ListaCircular para mostrar los participantes inscritos.
+}
+
 int main()
 {
 
