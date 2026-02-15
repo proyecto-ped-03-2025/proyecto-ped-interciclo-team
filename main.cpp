@@ -84,23 +84,20 @@ void ListaCircular::mostrar()
     } while (temp != cabeza);
 }
 
-void ListaCircular::reiniciarPuntajes() {
-        if (estaVacia()) return;
+void ListaCircular::reiniciarPuntajes()
+{
+    if (estaVacia())
+        return;
 
-        Nodo* temp = cabeza;
-        do {
-            temp->puntaje = 0;
-            temp = temp->siguiente;
-        } while (temp != cabeza);
-    }
+    Nodo *temp = cabeza;
+    do
+    {
+        temp->puntaje = 0;
+        temp = temp->siguiente;
+    } while (temp != cabeza);
+}
 
-
-
-//Para reiniciar puntos
-
-
-
-
+// Para reiniciar puntos
 
 /*
 Lo implementamos para verificar si la lista circular esta vacía.
@@ -138,6 +135,16 @@ int ListaCircular::obtenerTamano()
 Nodo *ListaCircular::obtenerCabeza()
 {
     return cabeza; // Devuelve un puntero al nodo cabeza de la lista circular.
+}
+
+// Obtener el siguiente nodo en la lista circular.
+Nodo *ListaCircular::obtenerSiguiente(Nodo *nodo)
+{
+    if (nodo == nullptr)
+    {
+        return nullptr; // Si el nodo es nulo, no hay siguiente, así que devolvemos nullptr.
+    }
+    return nodo->siguiente; // Devuelve el puntero al siguiente nodo en la lista circular.
 }
 
 int main()
