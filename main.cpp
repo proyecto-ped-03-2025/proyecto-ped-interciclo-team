@@ -39,6 +39,33 @@ public:
     Nodo *obtenerGanador();
 };
 
+class Juego
+{
+private:
+    ListaCircular lista;
+
+public:
+    // Constructor
+    Juego();
+    // Métodos principales del menú
+    void menuPrincipal();
+    void inscribir();
+    void verListadoParticipantes();
+    void jugarCompetencia();
+    void mostrarAyuda();
+    void mostrarIntegrantes();
+    // Métodos de lógica del juego
+    void jugarRonda(Nodo *jugador1, Nodo *jugador2);
+    bool validarOpcion(char opcion);
+    bool validarCantidadParticipantes(int cantidad);
+    int contarParticipantes();
+};
+
+ListaCircular::ListaCircular()
+{
+    cabeza = nullptr; // Inicializamos la cabeza de la lista circular como nullptr, indicando que está vacía.
+}
+
 // Se implementa para poder Insertar
 void ListaCircular::insertar(string nombre, char id)
 {
@@ -62,14 +89,18 @@ void ListaCircular::insertar(string nombre, char id)
     }
 }
 
-Nodo* ListaCircular::obtenerGanador() {
-    if (estaVacia()) return nullptr;
+Nodo *ListaCircular::obtenerGanador()
+{
+    if (estaVacia())
+        return nullptr;
 
-    Nodo* temp = cabeza;
-    Nodo* ganador = cabeza;
+    Nodo *temp = cabeza;
+    Nodo *ganador = cabeza;
 
-    do {
-        if (temp->puntaje > ganador->puntaje) {
+    do
+    {
+        if (temp->puntaje > ganador->puntaje)
+        {
             ganador = temp;
         }
         temp = temp->siguiente;
@@ -77,7 +108,6 @@ Nodo* ListaCircular::obtenerGanador() {
 
     return ganador;
 }
-
 
 // Verficar si se inscribieron bien(mostrar)
 void ListaCircular::mostrar()
@@ -162,6 +192,10 @@ Nodo *ListaCircular::obtenerSiguiente(Nodo *nodo)
         return nullptr; // Si el nodo es nulo, no hay siguiente, así que devolvemos nullptr.
     }
     return nodo->siguiente; // Devuelve el puntero al siguiente nodo en la lista circular.
+}
+
+Juego::Juego()
+{
 }
 
 int main()
