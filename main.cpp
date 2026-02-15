@@ -197,6 +197,21 @@ Nodo *ListaCircular::obtenerSiguiente(Nodo *nodo)
 Juego::Juego()
 {
 }
+// Método para inscribir jugadores en el juego.
+void Juego::inscribir()
+{
+    string nombre;
+    char id;
+
+    cout << "=== INSCRIBIR JUGADOR ===" << endl;
+    cout << "Nombre: ";
+    cin >> nombre;
+    cout << "ID (1 carácter): "; //
+    cin >> id;
+
+    lista.insertar(nombre, id); // Insertamos el nuevo jugador en la lista circular utilizando el método insertar de la clase ListaCircular.
+    cout << "¡" << nombre << " inscrito correctamente!" << endl;
+}
 
 int main()
 {
