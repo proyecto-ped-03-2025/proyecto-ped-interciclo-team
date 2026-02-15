@@ -86,6 +86,8 @@ void ListaCircular::mostrar(){
 
 }
 
+//Para reiniciar puntos
+
 
 
 
