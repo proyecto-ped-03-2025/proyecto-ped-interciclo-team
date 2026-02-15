@@ -62,6 +62,23 @@ void ListaCircular::insertar(string nombre, char id)
     }
 }
 
+Nodo* ListaCircular::obtenerGanador() {
+    if (estaVacia()) return nullptr;
+
+    Nodo* temp = cabeza;
+    Nodo* ganador = cabeza;
+
+    do {
+        if (temp->puntaje > ganador->puntaje) {
+            ganador = temp;
+        }
+        temp = temp->siguiente;
+    } while (temp != cabeza);
+
+    return ganador;
+}
+
+
 // Verficar si se inscribieron bien(mostrar)
 void ListaCircular::mostrar()
 {
