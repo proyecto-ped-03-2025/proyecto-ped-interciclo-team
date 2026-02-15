@@ -86,6 +86,17 @@ void ListaCircular::mostrar(){
 
 }
 
+void ListaCircular::reiniciarPuntajes() {
+        if (estaVacia()) return;
+
+        Nodo* temp = cabeza;
+        do {
+            temp->puntaje = 0;
+            temp = temp->siguiente;
+        } while (temp != cabeza);
+    }
+
+
 
 
 
