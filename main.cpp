@@ -356,12 +356,18 @@ void Juego::jugarRonda(Nodo *jugador1, Nodo *jugador2)
 
 bool Juego::validarOpcion(char opcion) {
 
-    if (opcion == 'P' || opcion == 'L' || opcion == 'T')
+    if (opcion == 'P' || opcion == 'A' || opcion == 'T')
         return true;
 
     cout << "Opcion invalida. Intente nuevamente.\n";
     return false;
 }
+
+//Para poder validar la cantidad de participantes antes de iniciar la competencia, asegurando que haya al menos 2 jugadores inscritos.
+bool Juego::validarCantidadParticipantes(int cantidad) {
+    return cantidad >= 2;
+}
+
 
 int main()
 {
