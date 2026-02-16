@@ -317,6 +317,43 @@ void Juego::mostrarIntegrantes()
     cout << "PROYECTO: Piedra, Papel o Tijera" << endl;
 }
 
+void Juego::jugarRonda(Nodo *jugador1, Nodo *jugador2)
+{
+    char opcion1, opcion2;
+
+    cout << "\nRonda: " << jugador1->nombre << " vs " << jugador2->nombre << endl;
+    cout << jugador1->nombre << ", elige tu opción (P/A/T): ";
+    cin >> opcion1;
+    cout << jugador2->nombre << ", elige tu opción (P/A/T): ";
+    cin >> opcion2;
+
+    if (!validarOpcion(opcion1) || !validarOpcion(opcion2)) // Validamos que las opciones ingresadas sean válidas (P, A o T).
+    {
+        cout << "Opción inválida. Por favor, elige P, A o T." << endl;
+        return;
+    }
+
+    if (opcion1 == opcion2) // Si ambos jugadores eligen la misma opción, es un empate.
+    {
+        cout << "Empate entre " << jugador1->nombre << " y " << jugador2->nombre << endl;
+        jugador1->puntaje += 1; // En caso de empate, ambos jugadores reciben 1 punto.
+        jugador2->puntaje += 1;
+    }
+    // Evaluamos las combinaciones ganadoras para determinar quién gana la ronda.
+    else if ((opcion1 == 'P' && opcion2 == 'T') || // Piedra vence a Tijera
+             (opcion1 == 'T' && opcion2 == 'A') || // Tijera vence a Papel
+             (opcion1 == 'A' && opcion2 == 'P'))   // Papel vence a Piedra
+    {
+        cout << jugador1->nombre << " gana la ronda contra " << jugador2->nombre << endl;
+        jugador1->puntaje += 3; // En caso de victoria, el jugador ganador recibe 3 puntos.
+    }
+    else
+    {
+        cout << jugador2->nombre << " gana la ronda contra " << jugador1->nombre << endl;
+        jugador2->puntaje += 3; // En caso de victoria, el jugador ganador recibe 3 puntos.
+    }
+}
+
 int main()
 {
 
