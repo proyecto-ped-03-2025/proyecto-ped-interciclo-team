@@ -296,6 +296,26 @@ void Juego::mostrarAyuda()
     cout << "  5. Al finalizar, se mostrará el ganador del torneo\n"
          << endl;
 }
+// Para mostrar los integrantes del proyecto.
+void Juego::mostrarIntegrantes()
+{
+    cout << "\n╔════════════════════════════════════════════════════╗" << endl;
+    cout << "║              INTEGRANTES DEL PROYECTO              ║" << endl;
+    cout << "╚════════════════════════════════════════════════════╝\n"
+         << endl;
+
+    cout << "INTEGRANTE 1:" << endl;
+    cout << "  Nombre: KEVIN ADOLFO GUTIERREZ SALINAS" << endl;
+    cout << "  Carnet: 00086125\n"
+         << endl;
+
+    cout << "INTEGRANTE 2:" << endl;
+    cout << "  Nombre: DAVID OCTAVIO CASTRO SANTAMARIA" << endl;
+    cout << "  Carnet: 00369425\n"
+         << endl;
+
+    cout << "PROYECTO: Piedra, Papel o Tijera" << endl;
+}
 
 int main()
 {
