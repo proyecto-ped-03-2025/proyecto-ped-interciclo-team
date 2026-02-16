@@ -213,33 +213,37 @@ void Juego::inscribir()
     cout << "¡" << nombre << " inscrito correctamente!" << endl;
 }
 
-//Para poder mostrar el listado de participantes inscritos en el juego.
+// Para poder mostrar el listado de participantes inscritos en el juego.
 void Juego::verListadoParticipantes()
 {
     cout << "=== LISTADO DE PARTICIPANTES ===" << endl;
     lista.mostrar(); // Llamamos al método mostrar de la clase ListaCircular para mostrar los participantes inscritos.
 }
 
-void Juego::jugarCompetencia() {
+void Juego::jugarCompetencia()
+{
 
     int cantidad = lista.obtenerTamano();
 
-    if (!validarCantidadParticipantes(cantidad)) {
+    if (!validarCantidadParticipantes(cantidad))
+    {
         cout << "\nSe necesitan al menos 2 participantes.\n";
         return;
     }
 
     lista.reiniciarPuntajes();
 
-    Nodo* actual = lista.obtenerCabeza();
+    Nodo *actual = lista.obtenerCabeza();
 
     cout << "\n=== INICIANDO COMPETENCIA ===\n";
 
-    do {
+    do
+    {
 
-        Nodo* rival = actual->siguiente;
+        Nodo *rival = actual->siguiente;
 
-        while (rival != lista.obtenerCabeza()) {
+        while (rival != lista.obtenerCabeza())
+        {
 
             jugarRonda(actual, rival);
 
@@ -252,7 +256,46 @@ void Juego::jugarCompetencia() {
 
     cout << "\nCompetencia finalizada.\n";
 }
+void Juego::mostrarAyuda()
+{
+    cout << "\n╔════════════════════════════════════════════════════╗" << endl;
+    cout << "║          AYUDA - PIEDRA, PAPEL O TIJERA            ║" << endl;
+    cout << "╚════════════════════════════════════════════════════╝\n"
+         << endl;
 
+    cout << "REGLAS DEL JUEGO:" << endl;
+    cout << "  • Piedra vence a  Tijera" << endl;
+    cout << "  • Tijera vence a Papel" << endl;
+    cout << "  • Papel vence a Piedra" << endl;
+    cout << "  • Si ambos jugadores eligen lo mismo, es un empate\n"
+         << endl;
+
+    cout << "OPCIONES DE JUEGO:" << endl;
+    cout << "  P - Piedra" << endl;
+    cout << "  A - Papel" << endl;
+    cout << "  T - Tijera\n"
+         << endl;
+
+    cout << "SISTEMA DE PUNTOS:" << endl;
+    cout << "  • Victoria   -> +3 puntos" << endl;
+    cout << "  • Empate     -> +1 punto" << endl;
+    cout << "  • Derrota    -> 0 puntos\n"
+         << endl;
+
+    cout << "ESTRUCTURA DEL TORNEO:" << endl;
+    cout << "  1. Todos los jugadores compiten contra todos los demás" << endl;
+    cout << "  2. Cada enfrentamiento se juega una sola vez" << endl;
+    cout << "  3. Los puntos se acumulan durante todo el torneo\n"
+         << endl;
+
+    cout << "PASOS PARA JUGAR:" << endl;
+    cout << "  1. Inscribe a los jugadores en el sistema" << endl;
+    cout << "  2. Verifica el listado de participantes" << endl;
+    cout << "  3. Inicia la competencia (se necesitan al menos 2 jugadores)" << endl;
+    cout << "  4. Todos los jugadores competirán entre sí" << endl;
+    cout << "  5. Al finalizar, se mostrará el ganador del torneo\n"
+         << endl;
+}
 
 int main()
 {
