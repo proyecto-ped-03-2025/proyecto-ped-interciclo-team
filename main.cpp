@@ -354,6 +354,15 @@ void Juego::jugarRonda(Nodo *jugador1, Nodo *jugador2)
     }
 }
 
+bool Juego::validarOpcion(char opcion) {
+
+    if (opcion == 'P' || opcion == 'L' || opcion == 'T')
+        return true;
+
+    cout << "Opcion invalida. Intente nuevamente.\n";
+    return false;
+}
+
 int main()
 {
 
