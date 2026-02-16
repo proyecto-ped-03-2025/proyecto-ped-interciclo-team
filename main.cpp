@@ -368,6 +368,12 @@ bool Juego::validarCantidadParticipantes(int cantidad) {
     return cantidad >= 2;
 }
 
+int Juego::contarParticipantes()
+{
+    return lista.obtenerTamano();
+}
+
+
 
 int main()
 {
