@@ -59,6 +59,7 @@ public:
     bool validarOpcion(char opcion);
     bool validarCantidadParticipantes(int cantidad);
     int contarParticipantes();
+    int comparar(char opcion1, char opcion2);
 };
 
 ListaCircular::ListaCircular()
@@ -354,7 +355,8 @@ void Juego::jugarRonda(Nodo *jugador1, Nodo *jugador2)
     }
 }
 
-bool Juego::validarOpcion(char opcion) {
+bool Juego::validarOpcion(char opcion)
+{
 
     if (opcion == 'P' || opcion == 'A' || opcion == 'T')
         return true;
@@ -363,8 +365,9 @@ bool Juego::validarOpcion(char opcion) {
     return false;
 }
 
-//Para poder validar la cantidad de participantes antes de iniciar la competencia, asegurando que haya al menos 2 jugadores inscritos.
-bool Juego::validarCantidadParticipantes(int cantidad) {
+// Para poder validar la cantidad de participantes antes de iniciar la competencia, asegurando que haya al menos 2 jugadores inscritos.
+bool Juego::validarCantidadParticipantes(int cantidad)
+{
     return cantidad >= 2;
 }
 
@@ -372,8 +375,20 @@ int Juego::contarParticipantes()
 {
     return lista.obtenerTamano();
 }
+// Para comparar las opciones de los jugadores y determinar el resultado de la ronda, devolviendo un valor que indica si es un empate, victoria del jugador 1 o victoria del jugador 2.
+int Juego::comparar(char opcion1, char opcion2)
+{
+    if (opcion1 == opcion2)
+        return 0; // Empate
 
+    if ((opcion1 == 'P' && opcion2 == 'T') || // Piedra vence a Tijera
+        (opcion1 == 'T' && opcion2 == 'A') || // Tijera vence a Papel
+        (opcion1 == 'A' && opcion2 == 'P'))   // Papel vence a Piedra
 
+        return 1; // Jugador 1 gana
+
+    return 2; // Jugador 2 gana
+}
 
 int main()
 {
