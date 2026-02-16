@@ -328,30 +328,29 @@ void Juego::jugarRonda(Nodo *jugador1, Nodo *jugador2)
     cout << jugador2->nombre << ", elige tu opción (P/A/T): ";
     cin >> opcion2;
 
-    if (!validarOpcion(opcion1) || !validarOpcion(opcion2)) // Validamos que las opciones ingresadas sean válidas (P, A o T).
+    if (!validarOpcion(opcion1) || !validarOpcion(opcion2))
     {
         cout << "Opción inválida. Por favor, elige P, A o T." << endl;
         return;
     }
 
-    if (opcion1 == opcion2) // Si ambos jugadores eligen la misma opción, es un empate.
+    int resultado = comparar(opcion1, opcion2); // ✨ Usa el método comparar
+
+    if (resultado == 0) // Empate
     {
         cout << "Empate entre " << jugador1->nombre << " y " << jugador2->nombre << endl;
-        jugador1->puntaje += 1; // En caso de empate, ambos jugadores reciben 1 punto.
+        jugador1->puntaje += 1;
         jugador2->puntaje += 1;
     }
-    // Evaluamos las combinaciones ganadoras para determinar quién gana la ronda.
-    else if ((opcion1 == 'P' && opcion2 == 'T') || // Piedra vence a Tijera
-             (opcion1 == 'T' && opcion2 == 'A') || // Tijera vence a Papel
-             (opcion1 == 'A' && opcion2 == 'P'))   // Papel vence a Piedra
+    else if (resultado == 1) // Jugador 1 gana
     {
         cout << jugador1->nombre << " gana la ronda contra " << jugador2->nombre << endl;
-        jugador1->puntaje += 3; // En caso de victoria, el jugador ganador recibe 3 puntos.
+        jugador1->puntaje += 3;
     }
-    else
+    else // Jugador 2 gana (resultado == 2)
     {
         cout << jugador2->nombre << " gana la ronda contra " << jugador1->nombre << endl;
-        jugador2->puntaje += 3; // En caso de victoria, el jugador ganador recibe 3 puntos.
+        jugador2->puntaje += 3;
     }
 }
 
