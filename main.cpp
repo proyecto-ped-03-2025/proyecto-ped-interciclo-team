@@ -60,6 +60,7 @@ public:
     bool validarCantidadParticipantes(int cantidad);
     int contarParticipantes();
     int comparar(char opcion1, char opcion2);
+    void mostrarGanador();
 };
 
 ListaCircular::ListaCircular()
@@ -387,6 +388,21 @@ int Juego::comparar(char opcion1, char opcion2)
         return 1; // Jugador 1 gana
 
     return 2; // Jugador 2 gana
+}
+
+// Solo el ganador
+void Juego::mostrarGanador()
+{
+    Nodo *ganador = lista.obtenerGanador(); // Llamamos al método obtenerGanador de la clase ListaCircular para obtener el nodo del jugador con el puntaje más alto.
+
+    if (ganador == nullptr)
+    {
+        cout << "No hay ganador." << endl;
+        return;
+    }
+
+    cout << "\n¡" << ganador->nombre << " es el GANADOR! " << endl;
+    cout << "Puntos totales: " << ganador->puntaje << endl;
 }
 
 int main()
