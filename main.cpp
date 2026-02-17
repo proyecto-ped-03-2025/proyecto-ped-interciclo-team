@@ -61,6 +61,7 @@ public:
     int contarParticipantes();
     int comparar(char opcion1, char opcion2);
     void mostrarGanador();
+    void mostrarPodio();
 };
 
 ListaCircular::ListaCircular()
@@ -403,6 +404,59 @@ void Juego::mostrarGanador()
 
     cout << "\n¡" << ganador->nombre << " es el GANADOR! " << endl;
     cout << "Puntos totales: " << ganador->puntaje << endl;
+}
+void Juego::mostrarPodio()
+{
+    if (lista.obtenerTamano() == 0)
+    {
+        cout << "No hay jugadores en el podio." << endl;
+        return;
+    }
+
+    Nodo *primero = nullptr, *segundo = nullptr, *tercero = nullptr; // Inicializamos punteros para los tres mejores jugadores (podio) como nullptr.
+
+    // Recorrer y encontrar los 3 mejores
+    Nodo *temp = lista.obtenerCabeza(); // Creamos un nodo temporal para recorrer la lista circular, comenzando desde la cabeza.
+    do
+    {
+        // Comparamos el puntaje del jugador actual (temp) con los puntajes de los jugadores en el podio (primero, segundo, tercero) para determinar su posición en el podio.
+        if (primero == nullptr || temp->puntaje > primero->puntaje)
+        {
+            tercero = segundo; // Si encontramos un nuevo primer lugar, el segundo lugar actual pasa a ser el tercero, y el primer lugar actual pasa a ser el segundo.
+            segundo = primero; // Luego, actualizamos el primer lugar con el nuevo jugador que tiene el puntaje más alto.
+            primero = temp;    // Si el jugador actual tiene un puntaje mayor que el primer lugar, actualizamos el podio en consecuencia.
+        }
+        // Si el jugador actual no es el nuevo primer lugar, verificamos si es el nuevo segundo lugar comparando su puntaje con el del segundo lugar actual.
+        else if (segundo == nullptr || temp->puntaje > segundo->puntaje)
+        {
+            tercero = segundo; // Si el jugador actual tiene un puntaje mayor que el segundo lugar pero no mayor que el primer lugar, actualizamos el tercer lugar con el segundo lugar actual, y luego actualizamos el segundo lugar con el nuevo jugador.
+            segundo = temp;    // Si el jugador actual tiene un puntaje mayor que el segundo lugar pero no mayor que el primer lugar, actualizamos el tercer lugar con el segundo lugar actual, y luego actualizamos el segundo lugar con el nuevo jugador.
+        }
+        // Si el jugador actual no es el nuevo primer lugar ni el nuevo segundo lugar, verificamos si es el nuevo tercer lugar comparando su puntaje con el del tercer lugar actual.
+        else if (tercero == nullptr || temp->puntaje > tercero->puntaje)
+        {
+            tercero = temp; // Si el jugador actual tiene un puntaje mayor que el tercer lugar pero no mayor que el primer o segundo lugar, actualizamos el tercer lugar con el nuevo jugador.
+        }
+
+        temp = temp->siguiente; //| Avanzamos al siguiente nodo en la lista circular para continuar el recorrido.
+    } while (temp != lista.obtenerCabeza());
+
+    // Mostrar podio
+    cout << "\n╔════════════════════════════════════════════════════╗" << endl;
+    cout << "║                    PODIO                             ║" << endl;
+    cout << "╚════════════════════════════════════════════════════╝\n"
+         << endl;
+
+    if (primero)
+        cout << " 1er Lugar: " << primero->nombre << " - " << primero->puntaje << " pts" << endl;
+
+    if (segundo)
+        cout << " 2do Lugar: " << segundo->nombre << " - " << segundo->puntaje << " pts" << endl;
+
+    if (tercero)
+        cout << " 3er Lugar: " << tercero->nombre << " - " << tercero->puntaje << " pts" << endl;
+
+    cout << endl;
 }
 
 int main()
