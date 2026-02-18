@@ -560,9 +560,8 @@ void Juego::menuPrincipal()
         cout << "6. Integrantes\n";
         cout << "7. Mostrar podio\n";
         cout << "8. Reiniciar puntajes\n";
-        cout << "9. Mostrar ronda visual\n";
-        cout << "10. Mostrar participantes recursivamente\n";
-        cout << "0. Salir\n";
+        cout << "9. Mostrar participantes recursivamente\n";
+        cout << "10. Salir\n";
         cout << "Seleccione una opcion: ";
         cin >> opcion;
 
@@ -598,14 +597,12 @@ void Juego::menuPrincipal()
             lista.reiniciarPuntajes();
             cout << "\nPuntajes reiniciados. Puedes iniciar una nueva competencia.\n";
             break;
+
         case 9:
-            mostrarRondaVisual('P', 'T', new Nodo("Jugador 1", 'X'), new Nodo("Jugador 2", 'Y')); // Ejemplo de visualización de ronda con opciones predeterminadas.
-            break;
-        case 10:
             lista.mostrarRecursivo();
             break;
 
-        case 0:
+        case 10:
             cout << "\nSaliendo del programa...\n";
             break;
 
@@ -613,7 +610,7 @@ void Juego::menuPrincipal()
             cout << "\nOpcion invalida. Intente nuevamente.\n";
         }
 
-    } while (opcion != 0);
+    } while (opcion != 10);
 }
 
 int main()
