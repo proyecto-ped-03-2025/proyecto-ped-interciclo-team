@@ -494,20 +494,20 @@ void Juego::mostrarRondaVisual(char opcion1, char opcion2, Nodo *jugador1, Nodo 
     cout << "║     ";
 
     if (opcion1 == 'P')
-        cout << "📄 PAPEL";
+        cout << "🪨 PIEDRA";
     else if (opcion1 == 'T')
         cout << "✂️ TIJERA";
     else if (opcion1 == 'A')
-        cout << "🪨 PIEDRA";
+        cout << "📄 PAPEL";
 
     cout << "       VS       ";
 
     if (opcion2 == 'P')
-        cout << "📄 PAPEL";
+        cout << "🪨 PIEDRA";
     else if (opcion2 == 'T')
         cout << "✂️ TIJERA";
     else if (opcion2 == 'A')
-        cout << "🪨 PIEDRA";
+        cout << "📄 PAPEL";
 
     cout << "     ║\n";
     cout << "╚════════════════════════════════════════════════════╝\n"
