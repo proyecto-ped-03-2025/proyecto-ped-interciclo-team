@@ -495,6 +495,26 @@ void Juego::mostrarRondaVisual(char opcion1, char opcion2, Nodo *jugador1, Nodo 
     cout << "╚════════════════════════════════════════════════════╝\n"
          << endl;
 }
+void ListaCircular::mostrarRecursivo()
+{
+    if (estaVacia())
+    {
+        cout << "No hay participantes.\n";
+        return;
+    }
+
+    mostrarRecursivoAux(cabeza);
+}
+void ListaCircular::mostrarRecursivoAux(Nodo* actual)
+{
+    cout << "Nombre: " << actual->nombre
+         << " | Puntaje: " << actual->puntaje
+         << " | ID: " << actual->id << endl;
+
+    if (actual->siguiente != cabeza)
+        mostrarRecursivoAux(actual->siguiente);
+}
+
 
 
 void Juego::menuPrincipal()
@@ -512,6 +532,10 @@ void Juego::menuPrincipal()
         cout << "4. Mostrar ganador\n";
         cout << "5. Ayuda\n";
         cout << "6. Integrantes\n";
+        cout << "7. Mostrar podio\n";
+        cout << "8. Reiniciar puntajes\n";
+        cout << "9. Mostrar ronda visual\n";
+        cout << "10. Mostrar participantes recursivamente\n";
         cout << "0. Salir\n";
         cout << "Seleccione una opcion: ";
         cin >> opcion;
@@ -550,6 +574,12 @@ void Juego::menuPrincipal()
             break;
         case 9:
             mostrarRondaVisual('P', 'T', new Nodo("Jugador 1", 'X'), new Nodo("Jugador 2", 'Y')); // Ejemplo de visualización de ronda con opciones predeterminadas.
+            break;
+        case 10:
+            lista.mostrarRecursivo();
+            break;
+
+    
 
         case 0:
             cout << "\nSaliendo del programa...\n";
