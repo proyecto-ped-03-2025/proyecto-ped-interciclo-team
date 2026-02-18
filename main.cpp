@@ -25,8 +25,7 @@ class ListaCircular
 {
 private:
     Nodo *cabeza;
-    void mostrarRecursivoAux(Nodo* actual);
-
+    void mostrarRecursivoAux(Nodo *actual);
 
 public:
     // constructor
@@ -40,7 +39,6 @@ public:
     Nodo *obtenerSiguiente(Nodo *nodo);
     Nodo *obtenerGanador();
     void mostrarRecursivo();
-
 };
 
 class Juego
@@ -209,18 +207,38 @@ Juego::Juego()
 void Juego::inscribir()
 {
     string nombre;
+    string idStr;
     char id;
 
     cout << "=== INSCRIBIR JUGADOR ===" << endl;
-    cout << "Nombre: ";
-    cin >> nombre;
-    cout << "ID (1 carácter): "; //
-    cin >> id;
 
-    lista.insertar(nombre, id); // Insertamos el nuevo jugador en la lista circular utilizando el método insertar de la clase ListaCircular.
+    cin.ignore(); // Limpiamos el buffer de entrada para evitar problemas con getline después de usar cin >> en el menú principal.
+
+    // Validar que el nombre no esté vacío
+    do
+    {
+        cout << "Nombre: ";
+        getline(cin, nombre);
+        if (nombre.empty()) // Si el nombre está vacío, mostramos un mensaje de error y pedimos que se ingrese nuevamente.
+            cout << "El nombre no puede estar vacío.\n";
+    } while (nombre.empty());
+
+    // Validar ID de exactamente 1 carácter
+    do
+    {
+        cout << "ID (1 carácter): ";
+        cin >> idStr;
+        if (idStr.length() != 1)
+            cout << "El ID debe ser exactamente 1 carácter. Intente nuevamente.\n";
+    } while (idStr.length() != 1);
+
+    cin.ignore(); // Limpiamos el buffer de entrada después de leer el ID para evitar problemas con getline en futuras inscripciones.
+
+    id = idStr[0]; // Asignamos el primer carácter de la cadena idStr al char id.
+
+    lista.insertar(nombre, id); // Llamamos al método insertar de la clase ListaCircular para agregar el nuevo jugador a la lista circular.
     cout << "¡" << nombre << " inscrito correctamente!" << endl;
 }
-
 // Para poder mostrar el listado de participantes inscritos en el juego.
 void Juego::verListadoParticipantes()
 {
@@ -343,7 +361,7 @@ void Juego::jugarRonda(Nodo *jugador1, Nodo *jugador2)
 
     mostrarRondaVisual(opcion1, opcion2, jugador1, jugador2); // Mostramos la ronda de manera visual utilizando el método mostrarRondaVisual para representar las opciones elegidas por los jugadores con emojis.
 
-    int resultado = comparar(opcion1, opcion2); // ✨ Usa el método comparar
+    int resultado = comparar(opcion1, opcion2); // Comparamos las opciones de los jugadores utilizando el método comparar para determinar el resultado de la ronda (empate, victoria del jugador 1 o victoria del jugador 2).
 
     if (resultado == 0) // Empate
     {
@@ -505,7 +523,7 @@ void ListaCircular::mostrarRecursivo()
 
     mostrarRecursivoAux(cabeza);
 }
-void ListaCircular::mostrarRecursivoAux(Nodo* actual)
+void ListaCircular::mostrarRecursivoAux(Nodo *actual)
 {
     cout << "Nombre: " << actual->nombre
          << " | Puntaje: " << actual->puntaje
@@ -514,8 +532,6 @@ void ListaCircular::mostrarRecursivoAux(Nodo* actual)
     if (actual->siguiente != cabeza)
         mostrarRecursivoAux(actual->siguiente);
 }
-
-
 
 void Juego::menuPrincipal()
 {
@@ -565,7 +581,7 @@ void Juego::menuPrincipal()
         case 6:
             mostrarIntegrantes();
             break;
-        case 7: 
+        case 7:
             mostrarPodio();
             break;
         case 8:
@@ -579,8 +595,6 @@ void Juego::menuPrincipal()
             lista.mostrarRecursivo();
             break;
 
-    
-
         case 0:
             cout << "\nSaliendo del programa...\n";
             break;
@@ -592,10 +606,9 @@ void Juego::menuPrincipal()
     } while (opcion != 0);
 }
 
-
 int main()
 {
-    Juego juego;          // Crear objeto del juego
+    Juego juego;           // Crear objeto del juego
     juego.menuPrincipal(); // Llamar al menú principal
     return 0;
 }
