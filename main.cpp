@@ -595,6 +595,7 @@ void Juego::menuPrincipal()
 
 int main()
 {
-
+    Juego juego;          // Crear objeto del juego
+    juego.menuPrincipal(); // Llamar al menú principal
     return 0;
 }
