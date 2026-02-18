@@ -25,6 +25,8 @@ class ListaCircular
 {
 private:
     Nodo *cabeza;
+    void mostrarRecursivoAux(Nodo* actual);
+
 
 public:
     // constructor
@@ -37,6 +39,8 @@ public:
     void reiniciarPuntajes();
     Nodo *obtenerSiguiente(Nodo *nodo);
     Nodo *obtenerGanador();
+    void mostrarRecursivo();
+
 };
 
 class Juego
@@ -491,6 +495,73 @@ void Juego::mostrarRondaVisual(char opcion1, char opcion2, Nodo *jugador1, Nodo 
     cout << "╚════════════════════════════════════════════════════╝\n"
          << endl;
 }
+
+
+void Juego::menuPrincipal()
+{
+    int opcion;
+
+    do
+    {
+        cout << "\n==============================\n";
+        cout << "      PIEDRA PAPEL TIJERA\n";
+        cout << "==============================\n";
+        cout << "1. Inscribir participante\n";
+        cout << "2. Ver listado de participantes\n";
+        cout << "3. Iniciar competencia\n";
+        cout << "4. Mostrar ganador\n";
+        cout << "5. Ayuda\n";
+        cout << "6. Integrantes\n";
+        cout << "0. Salir\n";
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
+
+        switch (opcion)
+        {
+        case 1:
+            inscribir();
+            break;
+
+        case 2:
+            verListadoParticipantes();
+            break;
+
+        case 3:
+            jugarCompetencia();
+            break;
+
+        case 4:
+            mostrarGanador();
+            break;
+
+        case 5:
+            mostrarAyuda();
+            break;
+
+        case 6:
+            mostrarIntegrantes();
+            break;
+        case 7: 
+            mostrarPodio();
+            break;
+        case 8:
+            lista.reiniciarPuntajes();
+            cout << "\nPuntajes reiniciados. Puedes iniciar una nueva competencia.\n";
+            break;
+        case 9:
+            mostrarRondaVisual('P', 'T', new Nodo("Jugador 1", 'X'), new Nodo("Jugador 2", 'Y')); // Ejemplo de visualización de ronda con opciones predeterminadas.
+
+        case 0:
+            cout << "\nSaliendo del programa...\n";
+            break;
+
+        default:
+            cout << "\nOpcion invalida. Intente nuevamente.\n";
+        }
+
+    } while (opcion != 0);
+}
+
 
 int main()
 {
