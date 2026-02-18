@@ -62,6 +62,7 @@ public:
     int comparar(char opcion1, char opcion2);
     void mostrarGanador();
     void mostrarPodio();
+    void mostrarRondaVisual(char opcion1, char opcion2, Nodo *jugador1, Nodo *jugador2);
 };
 
 ListaCircular::ListaCircular()
@@ -336,6 +337,8 @@ void Juego::jugarRonda(Nodo *jugador1, Nodo *jugador2)
         return;
     }
 
+    mostrarRondaVisual(opcion1, opcion2, jugador1, jugador2); // Mostramos la ronda de manera visual utilizando el método mostrarRondaVisual para representar las opciones elegidas por los jugadores con emojis.
+
     int resultado = comparar(opcion1, opcion2); // ✨ Usa el método comparar
 
     if (resultado == 0) // Empate
@@ -457,6 +460,36 @@ void Juego::mostrarPodio()
         cout << " 3er Lugar: " << tercero->nombre << " - " << tercero->puntaje << " pts" << endl;
 
     cout << endl;
+}
+
+// Para mostrar de manera visual las opciones elegidas por los jugadores en cada ronda, utilizando emojis para representar piedra, papel y tijera, y mostrando claramente quién eligió qué opción.
+void Juego::mostrarRondaVisual(char opcion1, char opcion2, Nodo *jugador1, Nodo *jugador2)
+{
+    cout << "\n╔════════════════════════════════════════════════════╗" << endl;
+    cout << "║                    ¡RONDA!                         ║" << endl;
+    cout << "╠════════════════════════════════════════════════════╣" << endl;
+    cout << "║  " << jugador1->nombre << "              " << jugador2->nombre << endl;
+    cout << "║     ";
+
+    if (opcion1 == 'P')
+        cout << "📄 PAPEL";
+    else if (opcion1 == 'T')
+        cout << "✂️ TIJERA";
+    else if (opcion1 == 'A')
+        cout << "🪨 PIEDRA";
+
+    cout << "       VS       ";
+
+    if (opcion2 == 'P')
+        cout << "📄 PAPEL";
+    else if (opcion2 == 'T')
+        cout << "✂️ TIJERA";
+    else if (opcion2 == 'A')
+        cout << "🪨 PIEDRA";
+
+    cout << "     ║\n";
+    cout << "╚════════════════════════════════════════════════════╝\n"
+         << endl;
 }
 
 int main()
