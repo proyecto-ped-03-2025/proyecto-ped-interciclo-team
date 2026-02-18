@@ -284,9 +284,9 @@ void Juego::jugarCompetencia()
 }
 void Juego::mostrarAyuda()
 {
-    cout << "\n╔════════════════════════════════════════════════════╗" << endl;
-    cout << "║          AYUDA - PIEDRA, PAPEL O TIJERA            ║" << endl;
-    cout << "╚════════════════════════════════════════════════════╝\n"
+    cout << "\n------------------------------------------------------" << endl;
+    cout << "         AYUDA - PIEDRA, PAPEL O TIJERA             " << endl;
+    cout << "  ------------------------------------------------------ \n"
          << endl;
 
     cout << "REGLAS DEL JUEGO:" << endl;
@@ -325,9 +325,9 @@ void Juego::mostrarAyuda()
 // Para mostrar los integrantes del proyecto.
 void Juego::mostrarIntegrantes()
 {
-    cout << "\n╔════════════════════════════════════════════════════╗" << endl;
-    cout << "║              INTEGRANTES DEL PROYECTO              ║" << endl;
-    cout << "╚════════════════════════════════════════════════════╝\n"
+    cout << "\n-------------------------------------------------------" << endl;
+    cout << "             INTEGRANTES DEL PROYECTO               " << endl;
+    cout << "  -------------------------------------------------------- \n"
          << endl;
 
     cout << "INTEGRANTE 1:" << endl;
@@ -477,9 +477,9 @@ void Juego::mostrarPodio()
     } while (temp != lista.obtenerCabeza());
 
     // Mostrar podio
-    cout << "\n╔════════════════════════════════════════════════════╗" << endl;
-    cout << "║                    PODIO                             ║" << endl;
-    cout << "╚════════════════════════════════════════════════════╝\n"
+    cout << "\n-------------------------------------------------------" << endl;
+    cout << "                    PODIO                            " << endl;
+    cout << "  -------------------------------------------------------- \n"
          << endl;
 
     if (primero)
@@ -497,11 +497,11 @@ void Juego::mostrarPodio()
 // Para mostrar de manera visual las opciones elegidas por los jugadores en cada ronda, utilizando emojis para representar piedra, papel y tijera, y mostrando claramente quién eligió qué opción.
 void Juego::mostrarRondaVisual(char opcion1, char opcion2, Nodo *jugador1, Nodo *jugador2)
 {
-    cout << "\n╔════════════════════════════════════════════════════╗" << endl;
-    cout << "║                    ¡RONDA!                         ║" << endl;
-    cout << "╠════════════════════════════════════════════════════╣" << endl;
-    cout << "║  " << jugador1->nombre << "              " << jugador2->nombre << endl;
-    cout << "║     ";
+    cout << "\n------------------------------------------------------" << endl;
+    cout << "                  ¡RONDA!                          " << endl;
+    cout << "--------------------------------------------------------" << endl;
+    cout << "-------  " << jugador1->nombre << "              " << jugador2->nombre << endl;
+    cout << "-------     ";
 
     if (opcion1 == 'P')
         cout << "🪨 PIEDRA";
@@ -519,8 +519,8 @@ void Juego::mostrarRondaVisual(char opcion1, char opcion2, Nodo *jugador1, Nodo 
     else if (opcion2 == 'A')
         cout << "📄 PAPEL";
 
-    cout << "     ║\n";
-    cout << "╚════════════════════════════════════════════════════╝\n"
+    cout << "     --\n";
+    cout << "---------------------------------\n"
          << endl;
 }
 void ListaCircular::mostrarRecursivo()
