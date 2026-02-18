@@ -342,39 +342,49 @@ void Juego::mostrarIntegrantes()
 
     cout << "PROYECTO: Piedra, Papel o Tijera" << endl;
 }
-
 void Juego::jugarRonda(Nodo *jugador1, Nodo *jugador2)
 {
     char opcion1, opcion2;
+    string entrada;
 
     cout << "\nRonda: " << jugador1->nombre << " vs " << jugador2->nombre << endl;
-    cout << jugador1->nombre << ", elige tu opción (P/A/T): ";
-    cin >> opcion1;
-    cout << jugador2->nombre << ", elige tu opción (P/A/T): ";
-    cin >> opcion2;
 
-    if (!validarOpcion(opcion1) || !validarOpcion(opcion2))
+    // Jugador 1 elige hasta que ingrese una opción válida
+    do
     {
-        cout << "Opción inválida. Por favor, elige P, A o T." << endl;
-        return;
-    }
+        cout << jugador1->nombre << ", elige tu opción (P/A/T): ";
+        cin >> entrada;
+        opcion1 = toupper(entrada[0]); // Convertimos la primera letra de la entrada a mayúscula para facilitar la validación.
+        if (!validarOpcion(opcion1))   // Si la opción ingresada no es válida, mostramos un mensaje de error y pedimos que se ingrese nuevamente.
+            cout << "Opción inválida. Por favor, elige P, A o T.\n";
+    } while (!validarOpcion(opcion1));
 
-    mostrarRondaVisual(opcion1, opcion2, jugador1, jugador2); // Mostramos la ronda de manera visual utilizando el método mostrarRondaVisual para representar las opciones elegidas por los jugadores con emojis.
+    // Jugador 2 elige hasta que ingrese una opción válida
+    do
+    {
+        cout << jugador2->nombre << ", elige tu opción (P/A/T): ";
+        cin >> entrada;
+        opcion2 = toupper(entrada[0]); // Convertimos la primera letra de la entrada a mayúscula para facilitar la validación.
+        if (!validarOpcion(opcion2))   // Si la opción ingresada no es válida, mostramos un mensaje de error y pedimos que se ingrese nuevamente.
+            cout << "Opción inválida. Por favor, elige P, A o T.\n";
+    } while (!validarOpcion(opcion2));
 
-    int resultado = comparar(opcion1, opcion2); // Comparamos las opciones de los jugadores utilizando el método comparar para determinar el resultado de la ronda (empate, victoria del jugador 1 o victoria del jugador 2).
+    mostrarRondaVisual(opcion1, opcion2, jugador1, jugador2); // Llamamos al método mostrarRondaVisual para mostrar de manera visual las opciones elegidas por los jugadores en esta ronda.
 
-    if (resultado == 0) // Empate
+    int resultado = comparar(opcion1, opcion2); // Llamamos al método comparar para comparar las opciones de los jugadores y determinar el resultado de la ronda, devolviendo un valor que indica si es un empate, victoria del jugador 1 o victoria del jugador 2.
+
+    if (resultado == 0)
     {
         cout << "Empate entre " << jugador1->nombre << " y " << jugador2->nombre << endl;
         jugador1->puntaje += 1;
         jugador2->puntaje += 1;
     }
-    else if (resultado == 1) // Jugador 1 gana
+    else if (resultado == 1)
     {
         cout << jugador1->nombre << " gana la ronda contra " << jugador2->nombre << endl;
         jugador1->puntaje += 3;
     }
-    else // Jugador 2 gana (resultado == 2)
+    else
     {
         cout << jugador2->nombre << " gana la ronda contra " << jugador1->nombre << endl;
         jugador2->puntaje += 3;
